@@ -1,14 +1,14 @@
 import { Request, Response } from "express"
-import { CreateTenantUseCase } from "./CreateTenantUseCase"
+import { CreateLocatorUseCase } from "./CreateLocatorUseCase"
 
 
-export class CreateTenantController {
+export class CreateLocatorController {
     async handle(request: Request, response: Response) {
-        const createTenantUseCase = new CreateTenantUseCase()
+        const createLocatorUseCase = new CreateLocatorUseCase()
 
         const { username, password, contact } = request.body
 
-        const tenant = await createTenantUseCase.execute({
+        const locator = await createLocatorUseCase.execute({
             username,
             password,
             contact
@@ -16,7 +16,8 @@ export class CreateTenantController {
 
         return response.json({
             message: "User created",
-            tenant: tenant
+            locator: locator
         })
     }
+
 }

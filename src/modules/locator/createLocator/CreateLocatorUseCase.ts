@@ -2,17 +2,16 @@ import { prisma } from "../../../database/prismaClient"
 import { hash } from "bcrypt"
 
 
-
-interface ICreateTenant {
+interface ICreateLocator {
     username: string
     password: string
     contact: string
 }
 
 
-export class CreateTenantUseCase {
-    async execute({ username, password, contact }: ICreateTenant) {
-        const tenantExists = await prisma.tenant.findFirst({
+export class CreateLocatorUseCase {
+    async execute({ username, password, contact }: ICreateLocator) {
+        const locatorExists = await prisma.locator.findFirst({
             where: {
                 username: {
                     equals: username,
@@ -21,11 +20,11 @@ export class CreateTenantUseCase {
             },
         })
 
-        if (tenantExists) {
-            throw new Error("Tenant already exists")
+        if (locatorExists) {
+            throw new Error("Locator already exists")
         }
 
-        const ContactExist = await prisma.tenant.findFirst({
+        const contactExist = await prisma.locator.findFirst({
             where: {
                 contact: {
                     equals: String(contact),
@@ -34,20 +33,22 @@ export class CreateTenantUseCase {
             },
         })
 
-        if (ContactExist !== null) {
+        if (contactExist !== null) {
             throw new Error("Contact already exists")
         }
 
         const hashPassword = await hash(password, 10)
 
-        const tenant = await prisma.tenant.create({
+        const locator = await prisma.locator.create({
             data: {
                 username,
                 password: hashPassword,
                 contact: String(contact)
             },
         })
-        return tenant
 
+        return locator
     }
 }
+
+
