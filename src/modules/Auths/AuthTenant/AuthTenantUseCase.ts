@@ -3,37 +3,44 @@ import { compare } from "bcrypt"
 import { prisma } from "../../../database/prismaClient"
 
 
-interface IAuthLocator {
+interface IAuthTenant {
     username: string
     password: string
 }
 
 
-export class AuthLocatorUseCase {
-    async execute({ username, password }: IAuthLocator) {
+export class AuthTenantUseCase {
+    async execute({ username, password }: IAuthTenant) {
 
-        const locator = await prisma.locator.findFirst({
+        const tenant = await prisma.tenant.findFirst({
             where: {
                 username
             }
         })
 
 
-        if (!locator) {
+        console.log(tenant)
+
+        if (!tenant) {
             throw new Error("Login or password incorrect")
         }
 
+        console.log(console.log(tenant))
 
-        const passwordDoesMatch = await compare(password, locator.password)
+        const passwordDoesMatch = await compare(password, tenant.password)
 
         if (!passwordDoesMatch) {
             throw new Error("Login or password incorrect")
         }
 
-        const token = sign({ username }, "51ac18eba35aecab762a32c8de0ab7f1", {
-            subject: locator.id,
+        console.log(tenant)
+
+        const token = sign({ username }, "51ac18eba35aecab762a32c8de0ab7f5", {
+            subject: tenant.id,
             expiresIn: "2d"
         })
+
+        console.log(tenant)
 
         return token
     }

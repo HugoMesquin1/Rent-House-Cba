@@ -1,13 +1,12 @@
 import { prisma } from "../../../database/prismaClient"
 import { hash } from "bcrypt"
-
+import { isValidNumber, isValidUsername } from "../../../utils/Validations"
 
 interface ICreateLocator {
     username: string
     password: string
     contact: string
 }
-
 
 export class CreateLocatorUseCase {
     async execute({ username, password, contact }: ICreateLocator) {
@@ -33,8 +32,16 @@ export class CreateLocatorUseCase {
             },
         })
 
-        if (contactExist !== null) {
+        if (contactExist) {
             throw new Error("Contact already exists")
+        }
+
+        if (!isValidUsername(username)) {
+            throw new Error("Invalid username")
+        }
+
+        if (!isValidNumber(contact)) {
+            throw new Error("Invalid phone number")
         }
 
         const hashPassword = await hash(password, 10)
@@ -50,5 +57,3 @@ export class CreateLocatorUseCase {
         return locator
     }
 }
-
-

@@ -1,5 +1,6 @@
 import { prisma } from "../../../database/prismaClient"
 import { hash } from "bcrypt"
+import { isValidNumber, isValidUsername } from "../../../utils/Validations"
 
 
 
@@ -34,7 +35,15 @@ export class CreateTenantUseCase {
             },
         })
 
-        if (ContactExist !== null) {
+        if (!isValidUsername(username)) {
+            throw new Error("Invalid username")
+        }
+
+        if (!isValidNumber(contact)) {
+            throw new Error("Invalid phone number")
+        }
+
+        if (ContactExist) {
             throw new Error("Contact already exists")
         }
 
