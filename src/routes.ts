@@ -5,8 +5,8 @@ import { AuthLocatorController } from "./modules/Auths/AuthLocator/AuthLocatorCo
 import { AuthTenantController } from "./modules/Auths/AuthTenant/AuthTenantController"
 import { CreateHouseController } from "./modules/house/CreateHouseController"
 
-import { EnsureAutheticateLocator } from "./middlewares/EnsureAutheticateLocator"
-import { EnsureAutheticateTenant } from "./middlewares/EnsureAutheticateTenant"
+
+import { EnsureAuthenticateTenant } from "./middlewares/EnsureAuthenticateTenant"
 
 
 
@@ -28,7 +28,7 @@ routes.post("/auth/tenant", authTenantController.handle)
 routes.post("/locator/create", createLocatorController.handle)
 routes.post("/tenant/create", createTenantController.handle)
 
-routes.post("/house/create", EnsureAutheticateTenant, createHouseController.handle)
+routes.post("/house/create", EnsureAuthenticateTenant, createHouseController.handle)
 
 
 

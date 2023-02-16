@@ -24,10 +24,10 @@ export async function EnsureAutheticateLocator(
     try {
         const { sub } = verify(
             token,
-            "51ac18eba35aecab762a32c8de0ab7f7"
+            "51ac18eba35aecab762a32c8de0ab7f1"
         ) as IPayload
 
-        request.id_locator = sub
+        request.locatorId = sub
 
         return next()
     } catch (err) {

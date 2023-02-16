@@ -18,14 +18,9 @@ export class AuthTenantUseCase {
             }
         })
 
-
-        console.log(tenant)
-
         if (!tenant) {
             throw new Error("Login or password incorrect")
         }
-
-        console.log(console.log(tenant))
 
         const passwordDoesMatch = await compare(password, tenant.password)
 
@@ -33,15 +28,11 @@ export class AuthTenantUseCase {
             throw new Error("Login or password incorrect")
         }
 
-        console.log(tenant)
-
         const token = sign({ username }, "51ac18eba35aecab762a32c8de0ab7f5", {
             subject: tenant.id,
             expiresIn: "2d"
         })
 
-        console.log(tenant)
-
         return token
     }
-}
+} 

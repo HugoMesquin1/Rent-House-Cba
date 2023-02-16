@@ -2,7 +2,7 @@ import { prisma } from "../../database/prismaClient"
 import { isValidZipCodeCuiaba } from "../../utils/Validations"
 
 interface ICreateHouse {
-    id?: string
+    tenantId: string
     street: string
     ZipCode: string
     Pool: boolean
@@ -11,6 +11,7 @@ interface ICreateHouse {
 
 export class CreateHouseUseCase {
     async execute({
+        tenantId,
         street,
         ZipCode,
         Pool,
@@ -23,6 +24,7 @@ export class CreateHouseUseCase {
 
         const house = await prisma.house.create({
             data: {
+                tenantId,
                 street,
                 ZipCode,
                 Pool,
