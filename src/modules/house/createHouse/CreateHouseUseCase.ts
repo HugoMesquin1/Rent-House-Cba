@@ -1,5 +1,5 @@
-import { prisma } from "../../database/prismaClient"
-import { isValidZipCodeCuiaba } from "../../utils/Validations"
+import { prisma } from "../../../database/prismaClient"
+import { isValidZipCodeCuiaba } from "../../../utils/Validations"
 
 interface ICreateHouse {
     tenantId: string
