@@ -39,6 +39,8 @@ model House {
   Garage  Boolean
   Tenant Tenant @relation(fields: [tenantId], references: [id])
   tenantId String
+  price    Int
+  available Boolean
 
   @@map("house")
 }

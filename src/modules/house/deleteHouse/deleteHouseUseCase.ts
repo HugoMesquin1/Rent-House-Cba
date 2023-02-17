@@ -7,17 +7,17 @@ interface IDeleteHouseRequest {
 
 export class DeleteHouseUseCase {
     async execute({ id, tenantId }: IDeleteHouseRequest) {
-        const findHouse = await prisma.house.findFirst({
+        console.log(`id-${id}`)
+        console.log(`tenantId-${tenantId}`)
+        const findHouse = await prisma.house.findFirstOrThrow({
             where: {
                 id: id,
                 tenantId: tenantId
-
             },
-
         })
 
-        console.log(tenantId)
-        console.log(id)
+        console.log(findHouse)
+
         if (!findHouse) {
             throw new Error("It was not possible to delete this house.")
         }
@@ -30,4 +30,4 @@ export class DeleteHouseUseCase {
 
         return deletedHouse
     }
-}
+} 

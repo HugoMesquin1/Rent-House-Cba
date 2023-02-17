@@ -8,7 +8,7 @@ export class DeleteHouseController {
         const { id } = request.params
         const tenantId = request.tenantId
 
-        console.log(tenantId)
+
 
         await deleteHouseUseCase.execute({ id, tenantId })
 

@@ -7,14 +7,16 @@ export class CreateHouseController {
 
         const createHouseUseCase = new CreateHouseUseCase()
         const { tenantId } = request
-        const { street, ZipCode, Pool, Garage } = request.body
+        const { street, ZipCode, Pool, Garage, price, available } = request.body
 
         const newHouse = await createHouseUseCase.execute({
             ZipCode,
             street,
             Pool,
             Garage,
-            tenantId
+            tenantId,
+            price,
+            available
         })
 
         return response.json({ newHouse })

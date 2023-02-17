@@ -7,6 +7,8 @@ interface ICreateHouse {
     ZipCode: string
     Pool: boolean
     Garage: boolean
+    available: boolean
+    price: number
 }
 
 export class CreateHouseUseCase {
@@ -16,6 +18,8 @@ export class CreateHouseUseCase {
         ZipCode,
         Pool,
         Garage,
+        available,
+        price
     }: ICreateHouse) {
 
         if (!isValidZipCodeCuiaba(ZipCode)) {
@@ -29,6 +33,8 @@ export class CreateHouseUseCase {
                 ZipCode,
                 Pool,
                 Garage,
+                available,
+                price,
             },
         })
 

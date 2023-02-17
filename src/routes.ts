@@ -9,6 +9,7 @@ import { SearchAllController } from "./modules/researches/searchAll/searchAllCon
 import { SearchByZipController } from "./modules/researches/searchByZip/searchByZipController"
 
 import { EnsureAuthenticateTenant } from "./middlewares/EnsureAuthenticateTenant"
+import { AvailableHouseController } from "./modules/researches/availableHouse/availableHouseController"
 
 
 
@@ -21,6 +22,7 @@ const createLocatorController = new CreateLocatorController()
 const createTenantController = new CreateTenantController()
 const deleteHouseController = new DeleteHouseController()
 const searchAllController = new SearchAllController()
+const availableHouseController = new AvailableHouseController()
 
 const authLocatorController = new AuthLocatorController()
 const authTenantController = new AuthTenantController()
@@ -39,6 +41,7 @@ routes.post("/house/create", EnsureAuthenticateTenant, createHouseController.han
 
 routes.get("/search/all", searchAllController.handle)
 routes.get("/search/zip/:zip", searchByZipController.handle)
+routes.get("/search/availablesHouses", availableHouseController.handle)
 
 
 export { routes }
