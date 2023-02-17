@@ -28,11 +28,14 @@ export class AuthTenantUseCase {
             throw new Error("Login or password incorrect")
         }
 
-        const token = sign({ username }, "51ac18eba35aecab762a32c8de0ab7f5", {
+        const token = sign({ username }, "167db8c94a5fb61b3126b1d064c75abb", {
             subject: tenant.id,
             expiresIn: "2d"
         })
 
+
         return token
     }
-} 
+
+}
+

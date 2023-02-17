@@ -37,8 +37,8 @@ model House {
   ZipCode String
   Pool    Boolean
   Garage  Boolean
-  Tenant Tenant? @relation(fields: [tenantId], references: [id])
-  tenantId String?
+  Tenant Tenant @relation(fields: [tenantId], references: [id])
+  tenantId String
 
   @@map("house")
 }

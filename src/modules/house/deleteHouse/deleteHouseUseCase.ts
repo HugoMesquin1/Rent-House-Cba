@@ -11,13 +11,13 @@ export class DeleteHouseUseCase {
             where: {
                 id: id,
                 tenantId: tenantId
+
             },
+
         })
 
-        console.log(findHouse)
-        console.log(id)
         console.log(tenantId)
-
+        console.log(id)
         if (!findHouse) {
             throw new Error("It was not possible to delete this house.")
         }

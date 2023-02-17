@@ -27,10 +27,12 @@ export async function EnsureAuthenticateTenant(
     try {
         const { sub } = verify(
             token,
-            "51ac18eba35aecab762a32c8de0ab7f5"
+            "167db8c94a5fb61b3126b1d064c75abb"
         ) as IPayload
 
         request.tenantId = sub
+
+
 
         return next()
     } catch (err) {
