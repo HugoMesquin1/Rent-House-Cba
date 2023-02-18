@@ -10,26 +10,21 @@ import { SearchByZipController } from "./modules/researches/searchByZip/searchBy
 import { ChangeAvailabilityHouseController } from "./modules/house/changeAvailability/changeAvailabilityController"
 import { EnsureAuthenticateTenant } from "./middlewares/EnsureAuthenticateTenant"
 import { AvailableHouseController } from "./modules/researches/availableHouse/availableHouseController"
-
-
+import { FilterValueController } from "./modules/researches/filterValue/filterValueController"
 
 const routes = Router()
 
 const createHouseController = new CreateHouseController()
-
 const searchByZipController = new SearchByZipController()
 const createLocatorController = new CreateLocatorController()
 const createTenantController = new CreateTenantController()
 const deleteHouseController = new DeleteHouseController()
 const searchAllController = new SearchAllController()
 const availableHouseController = new AvailableHouseController()
-
+const filterValueController = new FilterValueController()
 const changeAvailabilityHouseController = new ChangeAvailabilityHouseController()
-
 const authLocatorController = new AuthLocatorController()
 const authTenantController = new AuthTenantController()
-
-
 
 routes.post("/auth/locator", authLocatorController.handle)
 routes.post("/auth/tenant", authTenantController.handle)
@@ -43,6 +38,8 @@ routes.post("/house/create", EnsureAuthenticateTenant, createHouseController.han
 
 routes.get("/search/all", searchAllController.handle)
 routes.get("/search/zip/:zip", searchByZipController.handle)
+routes.get("/search/filterbyvalue", filterValueController.handle)
+
 routes.get("/search/availablesHouses", availableHouseController.handle)
 
 routes.put("/house/changeavailable/:id", EnsureAuthenticateTenant, changeAvailabilityHouseController.handle)

@@ -37,9 +37,6 @@ export class CreateHouseUseCase {
                 price,
             },
         })
-
-        console.log(tenantId)
-
         return house
     }
 }
