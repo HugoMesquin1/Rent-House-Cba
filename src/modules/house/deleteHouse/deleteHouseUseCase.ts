@@ -7,8 +7,6 @@ interface IDeleteHouseRequest {
 
 export class DeleteHouseUseCase {
     async execute({ id, tenantId }: IDeleteHouseRequest) {
-        console.log(`id-${id}`)
-        console.log(`tenantId-${tenantId}`)
         const findHouse = await prisma.house.findFirstOrThrow({
             where: {
                 id: id,
